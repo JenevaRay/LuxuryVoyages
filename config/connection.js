@@ -16,45 +16,44 @@ module.exports = {
     //*******************************************************
     database:{
         development: {
-            username: 'johndoe',
-            password: 'johndoe',
+            username: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
             host: 'localhost',
-            port: '27017',
-            dbName: 'express-mvc-skeleton-development'
+            port: 3306,
+            dbName: process.env.DB_NAME + '_dev'
         },
         production: {
-            username: 'johndoe',
-            password: 'johndoe',
+            username: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
             host: 'localhost',
-            port: '27017',
-            dbName: 'express-mvc-skeleton-production'
+            port: 3306,
+            dbName: process.env.DB_NAME + '_prod'
         },
         test: {
-            username: 'johndoe',
-            password: 'johndoe',
+            username: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
             host: 'localhost',
-            port: '27017',
-            dbName: 'express-mvc-skeleton-test'
-
+            port: 3306,
+            dbName: process.env.DB_NAME + '_test'
         }
     },
     //*********************************************************
     //Configure your email credentials and SMTP server
     //*********************************************************
-    email:{
-        sender:'Express-MVC Support<support@expressmvc.io>',
-        host:'smtp.google.com',
-        ssl:true,
-        port: 465,
-        secure:true,
-        auth:{
-            user:'express@express-mvc-skeleton.io',
-            pass:'password'
-        },
-        template:{
-            dir: root+'/resources/email-templates',
-            type:'jade'
+    // email:{
+    //     sender:'Express-MVC Support<support@expressmvc.io>',
+    //     host:'smtp.google.com',
+    //     ssl:true,
+    //     port: 465,
+    //     secure:true,
+    //     auth:{
+    //         user:'express@express-mvc-skeleton.io',
+    //         pass:'password'
+    //     },
+    //     template:{
+    //         dir: root+'/resources/email-templates',
+    //         type:'jade'
 
-        }
-    }
+    //     }
+    // }
 }

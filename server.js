@@ -7,7 +7,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const http = require('http');
 const path = require('path');
-let config = require('./config/config');
+let config = require('./config/connection');
 let routes = require('./routes');
 const database = require('./lib/database');
 
