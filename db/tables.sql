@@ -1,0 +1,31 @@
+use luxuryvoyages;
+
+CREATE TABLE `wikivoyagelistings` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `index` int NOT NULL,
+  `article` varchar(56) DEFAULT NULL,
+  `type` varchar(25) DEFAULT NULL,
+  `title` varchar(178) DEFAULT NULL,
+  `alt` varchar(481) DEFAULT NULL,
+  `wikidata` varchar(9) DEFAULT NULL,
+  `wikipedia` tinyint(1) DEFAULT NULL,
+  `address` varchar(455) DEFAULT NULL,
+  `directions` varchar(1599) DEFAULT NULL,
+  `phone` varchar(152) DEFAULT NULL,
+  `tollFree` varchar(102) DEFAULT NULL,
+  `email` varchar(59) DEFAULT NULL,
+  `fax` varchar(83) DEFAULT NULL,
+  `url` varchar(1041) DEFAULT NULL,
+  `hours` varchar(671) DEFAULT NULL,
+  `checkIn` varchar(139) DEFAULT NULL,
+  `checkOut` varchar(389) DEFAULT NULL,
+  `image` varchar(526) DEFAULT NULL,
+  `price` varchar(1190) DEFAULT NULL,
+  `latitude` decimal(38,16) DEFAULT NULL,
+  `longitude` decimal(38,17) DEFAULT NULL,
+  `wifi` tinyint(1) DEFAULT NULL,
+  `accessibility` tinyint(1) DEFAULT NULL,
+  `lastEdit` varchar(12) DEFAULT NULL,
+  `description` varchar(6113) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+)
