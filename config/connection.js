@@ -10,9 +10,9 @@ if (process.env.JAWSDB_URL) {
 else {
     exports.sequelize = sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, { // eslint-disable-line no-undef
         // logging: (str)=>{console.log(str)},
-        host: 'localhost',
         dialect: 'mysql',
-        port: 3306
+        host: process.env.DB_HOST, // eslint-disable-line no-undef
+        port: process.env.DB_PORT // eslint-disable-line no-undef
     });
 }
 
