@@ -1,0 +1,57 @@
+/* Custom styles for the cruise schedule */
+
+/* Center the h1 heading */
+h1 {
+    text-align: center;
+  }
+  
+  /* Add some margin to the schedule */
+  .schedule {
+    margin-top: 20px;
+  }
+  
+  /* Style the destination item */
+  .destination-item {
+    margin-bottom: 20px;
+  }
+  
+  /* Style the activity item */
+  .activity-item {
+    list-style: none;
+    margin-bottom: 5px;
+  }
+  
+  /* Bold the activity time */
+  .activity-time {
+    font-weight: bold;
+  }
+  
+  /* Center the schedule container */
+  #schedule-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  /* Style the destination and activity lists */
+  .destinations-list,
+  .activities-list {
+    width: 100%;
+    max-width: 500px;
+  }
+  
+  /* Add some spacing between destination items */
+  .destination-item:not(:last-child) {
+    margin-bottom: 30px;
+  }
+  
+  /* Style the header of the activity list */
+  .activities-list h2 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+  }
+  
+  /* Style the 'Add Activity' button */
+  #add-activity-button {
+    margin-top: 20px;
+  }

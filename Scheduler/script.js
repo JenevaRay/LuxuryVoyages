@@ -30,5 +30,9 @@ document.addEventListener("DOMContentLoaded", function () {
     // Insert the generated HTML into the schedule container
     const scheduleContainer = document.getElementById("schedule-container");
     scheduleContainer.innerHTML = generatedHTML;
+<<<<<<< Updated upstream
   });
   
+=======
+  });
+>>>>>>> Stashed changes
