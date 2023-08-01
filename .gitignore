@@ -1,6 +1,5 @@
 .idea/
 .env
-.env.old
 node_modules/
 lib/helper_scripts/
 old/
