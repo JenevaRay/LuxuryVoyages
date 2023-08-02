@@ -1,5 +1,4 @@
 "use strict";
-// const path = require("path");
 const express = require("express");
 const express_handlebars = require("express-handlebars");
 const session = require("express-session");
@@ -7,7 +6,6 @@ const sequelize = require("./config/connection");
 const dotenv = require("dotenv");
 const SessionStore = require('express-session-sequelize')(session.Store);
 const router = require ('./controllers')
-// import { routes } from 'controllers'
 
 dotenv.config();
 // because process.env.PORT is defined by the line above and if it's not present, it defaults to 3001.
