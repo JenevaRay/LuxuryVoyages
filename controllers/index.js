@@ -5,10 +5,15 @@ const router = express.Router()
 
 router.use('/api/', apiRoutes)
 
+//route for homepage
 router.get('/', (req,res) => {
     res.render('homepage');
 })
 
+router.get('/login', (req, res) => {
+    res.render('login');
+  });
+  
 // might move this to another file.
 const { wikivoyagelistings } = require('../models')
 const { Op } = require('sequelize')
