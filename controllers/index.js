@@ -5,6 +5,10 @@ const router = express.Router()
 
 router.use('/api/', apiRoutes)
 
+router.get('/', (req,res) => {
+    res.render('homepage');
+})
+
 // might move this to another file.
 const { wikivoyagelistings } = require('../models')
 const { Op } = require('sequelize')
@@ -49,8 +53,5 @@ router.get('/view-wiki/', async (req, res) => {
     // // note: this returns an array of results with null values filtered out by key.
     // res.json(await removeEmpty(fiveListings))
 })
-
-module.exports = router
-
 
 module.exports = router
