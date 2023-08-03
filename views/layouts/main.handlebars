@@ -30,6 +30,17 @@
   <main>
     {{{ body }}}
     {{!-- Main Content will go here --}}
+        <div class="container">
+      <h2 class="mt-3">Cruise Schedule</h2>
+      <div class="schedule mt-3">
+        <ul class="list-group destinations-list" id="schedule-container">
+          <!-- Activities will be dynamically generated here -->
+        </ul>
+      </div>
+      <button id="add-activity-button" class="btn btn-primary mt-3">Add Activity</button>
+    </div>
+  </main>
+
   </main>
         <footer>
             <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
@@ -44,4 +55,61 @@
         </footer>
 </body>
 
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luxury Voyages</title>
+  <link rel="stylesheet" type="text/css" href="/css/jass.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+        rel="stylesheet" 
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" 
+        crossorigin="anonymous">
+  <link href="/css/custom.css" rel="stylesheet">
+</head>
+
+<body>
+  <header>
+    <h1>Welcome to Luxury Voyages</h1>
+  </header>
+
+  {{!-- Navbar --}}
+  <nav>
+    <a href="/">Home</a>
+    <a href="/login">Login</a>
+    <a href="/signup">Sign Up</a>
+  </nav>
+
+  <main>
+    <div class="container">
+      <h2 class="mt-3">Cruise Schedule</h2>
+      <div class="schedule mt-3">
+        <ul class="list-group destinations-list" id="schedule-container">
+          <!-- Activities will be dynamically generated here -->
+        </ul>
+      </div>
+      <button id="add-activity-button" class="btn btn-primary mt-3">Add Activity</button>
+    </div>
+  </main>
+
+  <footer>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin="">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+            crossorigin="anonymous">
+    </script>
+    <script src="/js/map.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+    <script src="script.js"></script>
+  </footer>
+</body>
 </html>
