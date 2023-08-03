@@ -1,14 +1,28 @@
-// const express = require('express')
-// // const fetch = require('node-fetch')
-// require('dotenv').config()
-// const Amadeus = require('amadeus')
-// const amadeus = new Amadeus()
-
+const express = require('express')
+const fetch = require('node-fetch')
+require('dotenv').config()
+const { Client } = require('@googlemaps/google-maps-services-js')
+const client = new Client({
+    key: process.env.GOOGLE_MAPS_API_KEY
+})
 
 // // console.log(results)
 
-// const router = express.Router()
+const router = express.Router()
 
+async function mapsAPI() {
+    client.elevation({
+        params: {
+            locations: [{ lat: 45, lng: -110 }],
+            // key: "asdf"
+        },
+        timeout: 1000
+    }).then((r)=>{
+        console.log(r.data.results[0].elevation)
+    }).catch((e)=>{
+        console.log(e.response.data.error_message)
+    })
+}
 // async function amadeusAPI() {
 //     // this is functioning and tested code.
 
@@ -27,6 +41,8 @@
     
 // }
 
+mapsAPI()
+
 // amadeusAPI()
 
-// module.exports = router
+module.exports = router

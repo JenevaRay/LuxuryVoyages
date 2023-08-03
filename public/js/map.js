@@ -60,4 +60,4 @@ map.on('moveend', () => {
     console.log(bounds)
 })
 
-  map.on('click', onMapClick)
+map.on('click', onMapClick)
