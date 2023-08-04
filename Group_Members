@@ -1,5 +1,12 @@
 Group 9
 Jeneva Ray
 Quinton Palfreyman
-Bradley Burr
+# Bradley Burr
 Trevor Miller
+
+===============
+$>heroku auth:login
+$>heroku open
+
+using process.env.JAWSDB_URL
+

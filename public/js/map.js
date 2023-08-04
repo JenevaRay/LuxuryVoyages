@@ -1,41 +1,48 @@
-// const { setMaxParserCache } = require("mysql2");
-
 var map = L.map('map')
-// commented out example.
-// .setView([51.505, -0.09], 13);
 
 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
     attribution: '© OpenStreetMap'
 }).addTo(map);
 
-// var marker = L.marker([51.5, -0.09]).addTo(map);
-// marker.bindPopup("<b>Hello world!</b><br>I am a popup.").openPopup();
-
 const markers = []
 
-const viewBox = async (latHigh=13, latLow=12, longHigh=-70, longLow=-71, setMapView = true) => {
+const viewBox = async (latHigh, latLow, longHigh, longLow, setMapView = true) => {
     try {
-      const response = await fetch(`/api/wiki-listings/coord-range?latLow=${latLow}&latHigh=${latHigh}&longLow=${longLow}&longHigh=${longHigh}`, {
+      const wikiresponse = await fetch(`/api/wiki-listings/coord-range?latLow=${latLow}&latHigh=${latHigh}&longLow=${longLow}&longHigh=${longHigh}`, {
         method: 'GET',
-        headers: { 'Content-Type': 'application/json'}
+        headers: { 'Content-Type': 'application/json' }
       })
-      if (response.ok) {
-        const data = await response.json()
+      if (wikiresponse.ok) {
+        const data = await wikiresponse.json()
         if (setMapView) {
-            let coordbox = {
-                latHigh: data[1].latitude,
-                latLow: data[1].latitude,
-                longHigh: data[1].longitude,
-                longLow: data[1].longitude,
-                zoom: 13
-            }
+            document.getElementById('itinerary-create').style.display = 'none'
+            let latitude = (Number(latLow) + Number(latHigh)) / 2
+            let longitude = (Number(longLow) + Number(longHigh)) / 2
+            
+            let zoom = 13
             // console.log(data)
-            map.setView([data[1].latitude, data[1].longitude], coordbox.zoom)
+            map.setView([latitude, longitude], zoom)
         }
+        let bounds = map.getBounds()
+        let [ north, south, east, west ] = [bounds._northEast.lat, bounds._southWest.lat, bounds._northEast.lng, bounds._southWest.lng]
+        const itinresponse = await fetch(`/api/itin/bounds/?north=${north}&east=${east}&south=${south}&west=${west}`, {
+          method: 'GET',
+          headers: { 'Content-Type': 'application/json' },
+        //   body: { "northeast": bounds._northEast, "southwest": bounds._southWest }
+        })  
         for (let marker in markers) {
             map.removeLayer(markers[marker])
-        }    
+        }
+        if (itinresponse.ok) {
+            const itins = await itinresponse.json()
+            for (let row of itins) {
+                let marker = L.marker([row.latitude, row.longitude]).addTo(map);
+                console.log(row)
+                marker.bindPopup(`<p></p><h4>${row.summary}</h4><p>${row.details}</p><p>${row.starttime} - ${row.stoptime}</p><p><a href="/itin/${row.id}">UPDATE</a></p>`)
+                markers.push(marker)
+            }    
+        }
         for (let row of data) {
             let marker = L.marker([row.latitude, row.longitude]).addTo(map);
             console.log(row)
@@ -47,17 +54,30 @@ const viewBox = async (latHigh=13, latLow=12, longHigh=-70, longLow=-71, setMapV
       console.error(err)
     }
   }
-  void (viewBox())
+let params = new URLSearchParams(document.location.search.substring(1))
+console.log(params)
+viewBox(params.get('latLow'), params.get('latHigh'), params.get('longLow'), params.get('longHigh'), true)
 
-  var popup = L.popup()
+//   var popup = L.popup()
   
 function onMapClick(e) {
-    map.setView([e.latlng.lat, e.latlng.lng])
+    // click to create itinerary, instead of panning to location.
+    let form = document.getElementById('itinerary-create')
+    if (form.style.display === 'none') {
+        form.style.display = 'block'
+    }
+    document.getElementById('location').innerText = JSON.stringify([e.latlng.lat, e.latlng.lng])
+    // map.setView([e.latlng.lat, e.latlng.lng])
 }
 
 map.on('moveend', () => {
+    document.getElementById('itinerary-create').style.display = 'none'
     let bounds = map.getBounds()
-    // console.log(bounds._northEast)
+    params.set('latLow', bounds._southWest.lat)
+    params.set('latHigh', bounds._northEast.lat)
+    params.set('longLow', bounds._southWest.lng)
+    params.set('longHigh', bounds._northEast.lng)
+    history.replaceState(null, '', window.location.origin + window.location.pathname + '?' + params )
     viewBox(bounds._northEast.lat, bounds._southWest.lat, bounds._northEast.lng, bounds._southWest.lng, false)
     console.log(bounds)
 })

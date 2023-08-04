@@ -37,7 +37,7 @@ router.get('/coord-range/', async (req, res) => {
                     }
                 }
             })
-            res.status(200).json(await removeEmpty(twentyListings))
+            res.status(200).json(twentyListings)
         } else {
             res.status(400).json({"ERROR, malformed QUERY, do QUERY like: ": '?latLow=51.6&latHigh=51.7&longLow=5.2&longHigh=5.4'})
         }

@@ -10,9 +10,17 @@ Itineraries.init(
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
+    }, starttime: {
+        type: 'TIMESTAMP',
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
+    }, stoptime: {
+        type: 'TIMESTAMP',
+        defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
+        allowNull: false
     }, wiki_id: {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: true
     }, user_id: {
       type: DataTypes.INTEGER,
       allowNull: false
@@ -30,6 +38,7 @@ Itineraries.init(
   }, {
     sequelize,
     updatedAt: false,
+    createdAt: false,
     freezeTableName: true,
     underscored: true,
     modelName: 'itineraries'
