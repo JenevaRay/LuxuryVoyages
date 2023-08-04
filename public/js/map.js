@@ -39,7 +39,8 @@ const viewBox = async (latHigh, latLow, longHigh, longLow, setMapView = true) =>
             for (let row of itins) {
                 let marker = L.marker([row.latitude, row.longitude]).addTo(map);
                 console.log(row)
-                marker.bindPopup(`<p></p><h4>${row.summary}</h4><p>${row.details}</p><p>${row.starttime} - ${row.stoptime}</p><p><a href="/itin/${row.id}">UPDATE</a></p>`)
+
+                marker.bindPopup(`<p></p><h4>${row.summary}</h4><p>${row.details}</p><p>${row.starttime} - ${row.stoptime}</p><p><button type="button" class="btn btn-danger" onclick="javascript:deleteMarker(${row.id}, ${markers.length})">Delete</button></p>`)
                 markers.push(marker)
             }    
         }
@@ -60,15 +61,35 @@ viewBox(params.get('latLow'), params.get('latHigh'), params.get('longLow'), para
 
 //   var popup = L.popup()
   
+async function deleteMarker(id, markerIndex) {
+    console.log(markers[markerIndex])
+    // console.log(id)
+    if (Number(id)) {
+        const response = await fetch(`/api/itin/${id}`, {
+            method: 'DELETE',
+            headers: { 'Content-Type': 'application/json' }
+        })
+        if (response.status == 204) {
+            map.removeLayer(markers[markerIndex])
+            // const data = await response.json()
+            // console.log(data)
+        }
+    }
+}
+
 function onMapClick(e) {
     // click to create itinerary, instead of panning to location.
     let form = document.getElementById('itinerary-create')
     if (form.style.display === 'none') {
         form.style.display = 'block'
     }
-    document.getElementById('location').innerText = JSON.stringify([e.latlng.lat, e.latlng.lng])
+    document.getElementById('latitude').innerText = e.latlng.lat
+    document.getElementById('longitude').innerText = e.latlng.lng
+    // document.getElementById('location').innerText = JSON.stringify([e.latlng.lat, e.latlng.lng])
     // map.setView([e.latlng.lat, e.latlng.lng])
 }
+
+// map.on()
 
 map.on('moveend', () => {
     document.getElementById('itinerary-create').style.display = 'none'

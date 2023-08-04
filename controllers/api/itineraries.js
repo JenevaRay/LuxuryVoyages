@@ -188,8 +188,23 @@ router.post('/', async (req, res) => {
 //   }
 // })
 
-router.delete('/:postid', async (req, res) => {
-  console.log(req)
+router.delete('/:id', async (req, res) => {
+  if (Number(req.params.id)) {
+    try {
+      const itinerary = await Itineraries.findOne({ raw: true, where: { id: Number(req.params.id) } })
+      // if (itinerary.user_id === req.session.user_id) {
+        const response = await Itineraries.destroy({ where: { id: Number(req.params.id) } })
+        res.status(204).json('Deleted!')
+      // } else {
+      //    res.status(403)
+      // }
+    } catch (err) {
+      res.status(404).json(err)
+    }
+  } else {
+    res.status(403)
+  }
+  
   // if (req.session.loggedIn != null) {
   //   try {
   //     const originalPost = await Posts.findOne({ raw: true, where: { id: Number(req.params.postid) } })
