@@ -30,6 +30,7 @@ const viewBox = async (latHigh=13, latLow=12, longHigh=-70, longLow=-71, setMapV
                 longLow: data[1].longitude,
                 zoom: 13
             }
+            // console.log(data)
             map.setView([data[1].latitude, data[1].longitude], coordbox.zoom)
         }
         for (let marker in markers) {
@@ -37,7 +38,8 @@ const viewBox = async (latHigh=13, latLow=12, longHigh=-70, longLow=-71, setMapV
         }    
         for (let row of data) {
             let marker = L.marker([row.latitude, row.longitude]).addTo(map);
-            marker.bindPopup(`type: ${row.type}\narticle: ${row.article}\ntitle: ${row.title}\ndescription: ${row.description}`)
+            console.log(row)
+            marker.bindPopup(`<p><a href="/itin-add/${row.id}">ADD TO MY ITINERARY</a></p><h3>${row.title}</h3><p>${row.description}</p><p>type: ${row.type}article: ${row.article}</p>`)
             markers.push(marker)
         }
       }
