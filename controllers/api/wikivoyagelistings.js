@@ -36,7 +36,6 @@ router.get('/bounds', async (req, res) => {
                     }
                 }
             })
-            console.log(twentyListings)
             res.status(200).json(await removeEmpty(twentyListings))
         } else {
             res.status(400).json({"ERROR, malformed QUERY, do QUERY like: ": '?south=51.6&north=51.7&west=5.2&east=5.4'})

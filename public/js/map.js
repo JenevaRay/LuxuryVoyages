@@ -147,4 +147,3 @@ map.on('moveend', () => {
 })
 
 map.on('click', onMapClick)
-
