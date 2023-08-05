@@ -1,9 +1,5 @@
 const express = require('express')
-// import express from 'express'
 const { Users, Itineraries, wikivoyagelistings } = require('../../models')
-// import models from '../../models'
-// const MODELS: any = models
-// const { Users, Posts, Comments } = MODELS
 const { Op } = require('sequelize')
 
 const router = express.Router()
@@ -60,15 +56,21 @@ router.post('/', async (req, res) => {
   try {
     let { user_id, summary, details, wiki_id, latitude, longitude } = req.body
     if (Number(latitude) && Number(longitude )) {
-      const result = await Itineraries.create({
-        user_id: user_id,
+      Itineraries.create({
+        user_id: (user_id ? user_id : 1),
         wiki_id: (wiki_id ? wiki_id : null),
         latitude: latitude,
         longitude: longitude,
         summary: summary,
         details: details
+      }).then((obj)=>{
+        
+        console.log(JSON.parse(JSON.stringify(obj)))
+      }).catch((obj)=>{
+        res.status(405).json(obj)
       })
-      console.log(result)
+      // let result = await Itineraries.findOne({ where: {latitude: latitude, longitude: longitude}})
+      // console.log(result)
       // const twentyListings = await Itineraries.findAll({
       //   raw: true,
       //   limit: 20,
@@ -228,5 +230,3 @@ router.delete('/:id', async (req, res) => {
 })
 
 module.exports = router 
-
-// export { router as post }

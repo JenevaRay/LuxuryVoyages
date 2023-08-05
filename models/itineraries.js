@@ -29,10 +29,10 @@ Itineraries.init(
     }, longitude: {
       type: DataTypes.DECIMAL(38, 17)
     }, summary: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(178),
       allowNull: false
     }, details: {
-      type: DataTypes.STRING,
+      type: DataTypes.STRING(6113),
       allowNull: false
     }
   }, {
