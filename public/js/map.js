@@ -14,6 +14,28 @@ const itinStoptime = document.querySelector("#stoptime");
 flatpickr(itinStarttime, { enableTime: true }); // eslint-disable-line no-undef
 flatpickr(itinStoptime, { enableTime: true }); // eslint-disable-line no-undef
 
+let leafIcon = L.Icon.extend({ // eslint-disable-line no-undef
+  options: {
+    iconSize: [38, 95],
+    shadowSize: [50, 64],
+    iconAnchor: [22, 94],
+    shadowAnchor: [4, 62],
+    popupAnchor: [-3, -76],
+  },
+});
+var greenLeaf = new leafIcon({
+  iconUrl: "http://leafletjs.com/examples/custom-icons/leaf-green.png",
+  shadowUrl: "http://leafletjs.com/examples/custom-icons/leaf-shadow.png",
+});
+var redLeaf = new leafIcon({ // eslint-disable-line no-unused-vars
+  iconUrl: "http://leafletjs.com/examples/custom-icons/leaf-red.png",
+  shadowUrl: "http://leafletjs.com/examples/custom-icons/leaf-shadow.png",
+});
+var orangeLeaf = new leafIcon({
+  iconUrl: "http://leafletjs.com/examples/custom-icons/leaf-orange.png",
+  shadowUrl: "http://leafletjs.com/examples/custom-icons/leaf-shadow.png",
+});
+
 async function showModal() {
   modal.classList.remove("hidden");
 }
@@ -139,8 +161,12 @@ const viewBox = async (lat, lng, setMapView = true) => {
       }
       if (itinresponse.ok) {
         const itins = await itinresponse.json();
+
         for (let row of itins) {
-          let marker = L.marker([row.latitude, row.longitude]).addTo(map); // eslint-disable-line no-undef
+          let marker = L.marker( // eslint-disable-line no-undef
+            [row.latitude, row.longitude],
+            row.owner ? { icon: greenLeaf } : { icon: orangeLeaf },
+          ).addTo(map); 
           marker.bindPopup(
             `<h4>${row.summary}</h4><p>${
               row.details
@@ -160,6 +186,7 @@ const viewBox = async (lat, lng, setMapView = true) => {
         marker.bindPopup(
           `<h3>${row.title}</h3><p>${row.description}</p><p>${row.type}</p><p>${row.article}<p><button type="button" class="btn btn-primary" onclick="javascript:createItin(${row.id})">Create</button></p>`,
         );
+
         markers.push(marker);
       }
     }

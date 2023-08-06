@@ -7,7 +7,6 @@ const router = express.Router();
 router.use("/api/", apiRoutes);
 
 router.get("/", (req, res) => {
-  console.log(req.session);
   res.render("homepage", {
     loggedIn: req.session.loggedIn,
   });
@@ -30,7 +29,6 @@ router.get("/view-wiki/", async (req, res) => {
 });
 
 router.get("/my-itin", async (req, res) => {
-  console.log(req.session.user_id);
   if (req.session.loggedIn) {
     try {
       const rawitins = await Itineraries.findAll({
@@ -52,18 +50,21 @@ router.get("/my-itin", async (req, res) => {
         });
       }
       res.render("my-schedule", {
+        loggedIn: req.session.loggedIn,
         itineraries: itineraries,
       });
     } catch (err) {
-      console.log(err);
+      res.status(400).json(err);
     }
   } else {
-    res.redirect("/");
+    res.redirect("/view-wiki/?lat=0&lng=0");
   }
 });
 
 router.get("/signup", async (req, res) => {
-  res.render("signup");
+  res.render("signup", {
+    loggedIn: req.session.loggedIn,
+  });
 });
 
 router.get("/signout", async (req, res) => {
