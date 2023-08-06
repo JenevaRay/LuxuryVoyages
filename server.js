@@ -32,7 +32,7 @@ app.use(
 app.engine(
   "handlebars",
   express_handlebars.engine({
-    // helpers: helpers 
+    // helpers: helpers
   }),
 );
 app.set("view engine", "handlebars");
