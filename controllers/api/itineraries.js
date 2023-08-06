@@ -38,7 +38,7 @@ router.get("/bounds/", async (req, res) => {
     if (Number(south) && Number(north) && Number(west) && Number(east)) {
       const listings = await Itineraries.findAll({
         raw: true,
-        // limit: 20,
+        limit: 100,
         where: {
           latitude: {
             [Op.between]: [Number(south), Number(north)],
@@ -54,7 +54,14 @@ router.get("/bounds/", async (req, res) => {
           },
         ],
       });
-      res.status(200).json(listings);
+      const itins = [];
+      for (let row of listings) {
+        itins.push({
+          owner: req.session.user_id == row.user_id,
+          ...row,
+        });
+      }
+      res.status(200).json(itins);
     } else {
       res.status(404);
     }
