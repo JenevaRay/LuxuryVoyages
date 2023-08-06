@@ -23,8 +23,8 @@ app.use(
     store: sequelizeSessionStore,
     cookie: {
       secure: true,
-      httpOnly: false,
-      sameSite: "Lax",
+      httpOnly: true,
+      sameSite: "strict",
       maxAge: msPerMinute * 60,
     }, // Cookie expires after 60 minutes.
   }),
