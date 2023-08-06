@@ -19,12 +19,16 @@ router.post("/new", async (req, res) => {
   if (!username || !password || !passverif || password !== passverif) {
     return res.status(400).send("Username and password are required.");
   }
-  const result = await Users.create(req.body);
-  req.session.save(() => {
-    req.session.loggedIn = true;
-    req.session.username = username;
-    req.session.user_id = result.id;
-    res.status(201).send("User registered successfully");
+  Users.create(req.body).then((res) => {
+    req.session.save(() => {
+      req.session.loggedIn = true;
+      req.session.username = username;
+      req.session.user_id = res.id;
+      res.status(201).send("User registered successfully");
+    });  
+  }).catch((err) => {
+    console.log(err)
+    res.json(err)
   });
 });
 
