@@ -18,11 +18,12 @@ app.use(
   session({
     secret: process.env.SESSION_SECRET, // eslint-disable-line no-undef
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
+    unset: 'destroy',
     store: sequelizeSessionStore,
     cookie: {
-      secure: false,
-      httpOnly: true,
+      secure: true,
+    //   httpOnly: true,
       sameSite: "strict",
       maxAge: msPerMinute * 60,
     }, // Cookie expires after 60 minutes.
