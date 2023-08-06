@@ -1,21 +1,77 @@
-const express = require('express')
-const apiRoutes = require('./api')
+const express = require("express");
+const apiRoutes = require("./api");
+const { Itineraries } = require("../models");
 
-const router = express.Router()
+const router = express.Router();
 
-router.use('/api/', apiRoutes)
+router.use("/api/", apiRoutes);
 
-//route for homepage
-router.get('/', (req,res) => {
-    res.render('homepage');
-})
-
-router.get('/login', (req, res) => {
-    res.render('login');
+router.get("/", (req, res) => {
+  console.log(req.session);
+  res.render("homepage", {
+    loggedIn: req.session.loggedIn,
   });
-  
-router.get('/view-wiki/', async (req, res) => {
-    res.render('view-wiki')
-})
+});
 
-module.exports = router
+router.get("/login", async (req, res) => {
+  if (req.session.loggedIn) {
+    res.status(200).redirect("/");
+  } else {
+    res.render("login", {
+      loggedIn: req.session.loggedIn,
+    });
+  }
+});
+
+router.get("/view-wiki/", async (req, res) => {
+  res.render("view-wiki", {
+    loggedIn: req.session.loggedIn,
+  });
+});
+
+router.get("/my-itin", async (req, res) => {
+  console.log(req.session.user_id);
+  if (req.session.loggedIn) {
+    try {
+      const rawitins = await Itineraries.findAll({
+        raw: true,
+        where: {
+          user_id: req.session.user_id,
+        },
+        order: [["starttime", "ASC"]],
+      });
+      const itineraries = [];
+      for (let row of rawitins) {
+        itineraries.push({
+          latitude: row.latitude,
+          longitude: row.longitude,
+          summary: row.summary ? row.summary : "link",
+          details: row.details,
+          starttime: row.starttime,
+          stoptime: row.stoptime,
+        });
+      }
+      res.render("my-schedule", {
+        itineraries: itineraries,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  } else {
+    res.redirect("/");
+  }
+});
+
+router.get("/signup", async (req, res) => {
+  res.render("signup");
+});
+
+router.get("/signout", async (req, res) => {
+  if (req.session.loggedIn) {
+    req.session.destroy(() => {
+      res.status(204).redirect("/");
+    });
+  }
+});
+
+module.exports = router;

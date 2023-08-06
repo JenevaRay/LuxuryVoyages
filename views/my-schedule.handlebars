@@ -1,0 +1,10 @@
+<h2>Itinerary Schedule</h2>
+<ul>
+    {{#itineraries}}
+    <li>
+        <h4><a href="/view-wiki?lat={{ latitude }}&lng={{ longitude }}">{{this.summary}}</a></h4>
+        <p><span class="activity-time">{{ starttime }}</span> - {{ stoptime }}</p>
+        <p>{{ this.details }}</p>
+    </li>
+    {{/itineraries}}
+</ul>

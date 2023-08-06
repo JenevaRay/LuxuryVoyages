@@ -1,0 +1,15 @@
+<header>
+  <h1>Welcome to Luxury Voyages</h1>
+</header>
+
+<nav>
+  <a class="rounded px-3 py-2" href="/">Home</a>
+  <a class="rounded px-3 py-2" href="/my-itin">My Itinerary</a>
+  <a class="rounded px-3 py-2" href="/view-wiki?lat=12.2&lng=-68.2">Map</a>
+  {{#if loggedIn}}
+    <a class="rounded px-3 py-2" href="/signout">Log Out</a>
+  {{else}}
+    <a class="rounded px-3 py-2" href="/login">Login</a>
+    <a class="rounded px-3 py-2" href="/signup">Sign Up</a>
+  {{/if}}
+</nav>

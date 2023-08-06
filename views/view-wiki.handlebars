@@ -1,19 +1,77 @@
- <div id="map">
-    
- </div>
- 
-<form id="itin-create">
-    FORM GOES HERE    
-    <label for="summary">Title</label>
-    <input type="text" id="itin-summary" name="summary">
-    <label for="details">Details</label>
-    <textarea id="itin-details" name="details" rows="4" cols="60"></textarea>
-    <div>
-        <p id="user_id"></p>
-        <p id="wiki_id"></p>
-        <p id="itin-url"></p>
-        <p id="latitude"></p>
-        <p id="longitude"></p>
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+>
+</script>
+
+<div class="col-md-12" id="map">
+
+</div>
+
+<div
+  id="modal"
+  class="modal hidden"
+  tabindex="1"
+  role="dialog"
+  aria-hidden="true"
+>
+  <div class="modal-dialog flex" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add to Itinerary!</h5>
+        <button
+          type="button"
+          class="btn-close"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&nbsp;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="itin-create">
+          <label for="summary">Title</label>
+          <input type="text" id="itin-summary" name="summary" />
+          <label for="details">Details</label>
+          <textarea
+            id="itin-details"
+            name="details"
+            rows="12"
+            cols="60"
+          ></textarea>
+          <div>
+            <input
+              class="flatpickr flatpickr-input"
+              type="text"
+              placeholder="START date and time"
+              readonly="readonly"
+              id="starttime"
+            />
+            <input
+              class="flatpickr flatpickr-input"
+              type="text"
+              placeholder="END date and time"
+              readonly="readonly"
+              id="stoptime"
+            />
+            <p id="wiki_id" class="hidden"></p>
+            <p id="itin-url"></p>
+            <p id="latitude" class="hidden"></p>
+            <p id="longitude" class="hidden"></p>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          id="itin-submit"
+          type="button"
+          class="btn btn-primary"
+        >Create</button>
+      </div>
     </div>
-    <button id="itin-submit" class="btn btn-primary">Create</button>
-</form>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="/js/map.js"></script>
