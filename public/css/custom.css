@@ -1,7 +1,96 @@
-#map { 
-    height: 480px;
+#map {
+  height: calc(100vh - 80px);
+  z-index: 0;
 }
 
 #homepage-image {
-    max-width: 80%;
+  max-width: 80%;
+}
+
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.4rem;
+  width: auto;
+  min-height: 250px;
+  position: absolute;
+  top: 20%;
+  height: auto;
+  max-height: auto;
+  left: 33%;
+  background-color: white;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  z-index: 2;
+  margin: auto;
+}
+
+.modal-dialog {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.modal input {
+  padding: 0.7rem 1rem;
+  border: 1px solid #eee;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+.modal p {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.4rem 0 0.2rem;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  font-weight: 600;
+}
+
+.btn {
+  display: inline-block;
+  padding: 0.8rem 1.4rem;
+  font-weight: 700;
+  /* background-color: black; */
+  color: white;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 1em;
+}
+
+.btn-open {
+  position: absolute;
+  bottom: 150px;
+}
+
+.hidden {
+  display: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.fit-picture {
+  height: auto;
+  width: 100vw;
+}
+
+.fit-picture img {
+  width: 100vw;
+}
+
+.flatpickr-calendar .open {
+  z-index: 5;
 }
