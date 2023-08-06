@@ -10,6 +10,8 @@ const router = require("./controllers");
 dotenv.config();
 const PORT = process.env.PORT || 3001; // eslint-disable-line no-undef
 
+app.set("trust proxy", 1)
+
 const app = express();
 const msPerMinute = 60 * 1000;
 const sequelizeSessionStore = new SessionStore({ db: sequelize });
