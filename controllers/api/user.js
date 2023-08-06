@@ -5,7 +5,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   if (req.session.loggedIn) {
-    res.redirect("/");
+    res.status(200).redirect("/");
   }
   try {
     res.render("login");
@@ -48,7 +48,7 @@ router.post("/login", async (req, res) => {
         req.session.loggedIn = true;
         req.session.username = username;
         req.session.user_id = result.id;
-        res.status(200);
+        res.status(200).json("Success!");
       });
     } else {
       return res
