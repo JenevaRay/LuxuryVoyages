@@ -44,19 +44,20 @@ router.post("/login", async (req, res) => {
       where: { username },
     });
     if (result != null && (await result.checkPassword(password))) {
-      req.session.save(() => {
-        req.session.loggedIn = true;
-        req.session.username = username;
-        req.session.user_id = result.id;
-        res.status(200).json("Success!");
-      });
+      console.log("Success!")
+      req.session.loggedIn = true;
+      req.session.username = username;
+      req.session.user_id = result.id;
+      req.session.save();
+      res.status(200).json("Success!");
     } else {
-      return res
+      console.log()
+      res
         .status(401)
         .send("Correct username and password are required.");
     }
   } else {
-    return res.status(400).send("Username and password are required.");
+    res.status(400).send("Username and password are required.");
   }
 });
 
