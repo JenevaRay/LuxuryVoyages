@@ -28,7 +28,6 @@ Users.init(
   {
     hooks: {
       async beforeCreate(newUserData) {
-        console.log(process.env.BCRYPT_SALT); // eslint-disable-line no-undef
         newUserData.password = await bcrypt.hash(
           newUserData.password,
           Number(process.env.BCRYPT_SALT_ROUNDS), // eslint-disable-line no-undef

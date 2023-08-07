@@ -7,7 +7,6 @@ const router = express.Router();
 router.use("/api/", apiRoutes);
 
 router.get("/", (req, res) => {
-  console.log(req.session)
   res.render("homepage", {
     loggedIn: req.session.loggedIn,
   });
