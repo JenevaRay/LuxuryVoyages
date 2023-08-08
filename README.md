@@ -25,8 +25,7 @@ We wrote this app to help people keep track of things they would like to do whil
 Polish the HTML portions of the site.
 Business partnerships with destinations.
 
-
-## Table of Contents
+![Screenshot](Screenshot.png)
 
 ## Installation
 * `git clone git@github.com:JenevaRay/LuxuryVoyages.git`
