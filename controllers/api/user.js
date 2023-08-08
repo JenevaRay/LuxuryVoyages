@@ -25,7 +25,8 @@ router.post("/new", async (req, res) => {
       req.session.loggedIn = true;
       req.session.username = username;
       req.session.user_id = res.id;
-      
+      req.session.save();
+      res.status(200).json("Success!");      
     });  
   }).catch((err) => {
     // console.log(err)
