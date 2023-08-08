@@ -43,3 +43,6 @@ Business partnerships with destinations.
 
 ## Commentary
 A lot of work was done rapidly, with the loss of a team member, we thought it would have to be delayed or features cut, but considering, I think we did pretty well delivering a full-featured product with fewer people than we needed!
+
+## Presentation
+Here's the link to our powerpoint for our presentation: https://drive.google.com/file/d/1B10xLYOaPVkwqduRhNhInucZR32Nz4wA/view?usp=sharing
