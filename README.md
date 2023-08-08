@@ -38,8 +38,8 @@ Business partnerships with destinations.
 * Check out the live installation at `https://hidden-sierra-19402-e64d4351653d.herokuapp.com/`
 
 ## Credits
-[leaflet](https://leafletjs.com) 
-[wiki-voyage-listings CSV](https://data.world/nicolas-raoul/wikivoyage-points-of-interest/workspace/file?filename=wikivoyage-listings-en.csv)
+* [leaflet](https://leafletjs.com) 
+* [wiki-voyage-listings CSV](https://data.world/nicolas-raoul/wikivoyage-points-of-interest/workspace/file?filename=wikivoyage-listings-en.csv)
 
 ## Commentary
 A lot of work was done rapidly, with the loss of a team member, we thought it would have to be delayed or features cut, but considering, I think we did pretty well delivering a full-featured product with fewer people than we needed!
