@@ -21,10 +21,11 @@ We wrote this app to help people keep track of things they would like to do whil
 * Bootstrap modals for itinerary creation.
 * full HTTPS compatibility, including with session cookies.
 
-# To Do List
+## To Do List
 Polish the HTML portions of the site.
 Business partnerships with destinations.
 
+## Screenshot
 ![Screenshot](Screenshot.png)
 
 ## Installation
