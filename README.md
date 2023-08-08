@@ -1,51 +1,45 @@
-Luxary Voyages
+# LuxuryVoyages
+Making luxury travel easy!
 
-CONTRIBUTORS
-Jeneva Ray
-Trevor Miller
-Quinton Palfreyman
+## Contributors
+* Jeneva Ray - Backend & Mapping
+* Trevor Miller - Itinerary
+* Quinton Palfreyman - Landing Page
 
+## Description
+We wrote this app to help people keep track of things they would like to do while on vacation.
 
-USER STORY
-As a User I want a way to track my itenerary while on vaction
-
-USAGE
-When the user creates an account 
-then they are able to login with their credintials
-when the user selects the location and thing they want to do
-then they can add it to their iteneary and the time frames
+# Technologies New to Us, which were used
+* frontend: flatpickr (date picker) & leaflet (mapping system)
+* backend: wiki-voyages-listings (90MB CSV -> 122MB SQL) - see below for access
 
 
-NEW PACKAGES USED
- "flatpickr" 
+## Features
+* Full user sessions support (including timeouts)
+* Custom Leaflet.js UI additions (colored markers, create-an-itinerary from wiki entry, create-an-itinerary from map location)
+& the ability to delete created itinerary markers.
+* Bootstrap modals for itinerary creation.
+* full HTTPS compatibility, including with session cookies.
 
- "leaflet"
-
- "wiki-voyages-listings"
-
-
-FEATURES
-
-Full user support
-Session timeouts 
-Custom leaflet UI additions 
- Ability to delete itenerary markers, and multiple ways to create itenerary markers
-My Itenerarys allows user to track itenerarys by time stamp
-Bootstrap modals for iteneary creation
-Multiple forms of wikivoyagelistings: SQL CSV
- Contact for listings
-
-Table of Contents
-config
-controllers
-db
-models
-public
-views
-server.js
+# To Do List
+Polish the HTML portions of the site.
+Business partnerships with destinations.
 
 
+## Table of Contents
 
+## Installation
+* `git clone git@github.com:JenevaRay/LuxuryVoyages.git`
+* create `.env` file with format outlined in `.env.EXAMPLE`
+* `node server.js`
+* navigate to `localhost:3001` (or other port, as overridden in server.js)
 
+## Usage
+* Check out the live installation at `https://hidden-sierra-19402-e64d4351653d.herokuapp.com/`
 
+## Credits
+[leaflet](https://leafletjs.com) 
+[wiki-voyage-listings CSV](https://data.world/nicolas-raoul/wikivoyage-points-of-interest/workspace/file?filename=wikivoyage-listings-en.csv)
 
+## Commentary
+A lot of work was done rapidly, with the loss of a team member, we thought it would have to be delayed or features cut, but considering, I think we did pretty well delivering a full-featured product with fewer people than we needed!
