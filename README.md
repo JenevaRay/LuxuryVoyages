@@ -31,6 +31,7 @@ Business partnerships with destinations.
 ## Installation
 * `git clone git@github.com:JenevaRay/LuxuryVoyages.git`
 * create `.env` file with format outlined in `.env.EXAMPLE`
+* `npm i`
 * `node server.js`
 * navigate to `localhost:3001` (or other port, as overridden in server.js)
 
