@@ -32,6 +32,7 @@ Business partnerships with destinations.
 * `git clone git@github.com:JenevaRay/LuxuryVoyages.git`
 * create `.env` file with format outlined in `.env.EXAMPLE`
 * `npm i`
+* `mysql -u {user} -p luxuryvoyages` -> `source db/schema.sql` -> `exit`
 * `node server.js`
 * navigate to `localhost:3001` (or other port, as overridden in server.js)
 
